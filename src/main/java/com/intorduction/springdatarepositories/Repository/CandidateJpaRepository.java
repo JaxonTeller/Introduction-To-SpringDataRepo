@@ -11,3 +11,4 @@ public interface CandidateJpaRepository extends JpaRepository<Candidate,Long> {
     long countBylastName(String lastName);
     void deleteByLastName(String lastName);
 }
+
