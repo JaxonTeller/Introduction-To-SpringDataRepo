@@ -12,7 +12,9 @@ public class SpringdatarepositoriesApplication {
 
     public static void main(String[] args) {
         ApplicationContext run = SpringApplication.run(SpringdatarepositoriesApplication.class, args);
+/*
         Arrays.stream(run.getBeanDefinitionNames()).forEach(System.out::println);
+*/
     }
 
 }
