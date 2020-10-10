@@ -29,4 +29,9 @@ public class Candidate {
 
     private String email;
 
+    public Candidate findByFirstNameAndLastName(String firstName,String lastName)
+    {
+        System.out.println("This method is called from named query execution");
+        return new Candidate();
+    }
 }

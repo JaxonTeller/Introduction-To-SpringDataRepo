@@ -66,5 +66,17 @@ public class CandidateService implements CommandLineRunner {
         System.out.println(this.candidateRepository.findTop3ByFirstNameIsContaining("n").
                 stream().map(Candidate::getFirstName).collect(Collectors.toList()));
 
+        /*@Query*/
+        System.out.println(this.candidateRepository.findByFirstName("Nishikant"));
+
+        /*@Query native query*/
+        System.out.println(this.candidateRepository.findByFirstNameNativeQuery("Nant"));
+
+        /*@Query with param binding*/
+        System.out.println(this.candidateRepository.findByFirstNameWithParam("Nant"));
+
+        this.candidateRepository.updateTheFirstName("nishukant@gmail.com","Nishikant","Tayade");
     }
+
+
 }

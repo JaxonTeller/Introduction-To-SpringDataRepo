@@ -5,6 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.util.Streamable;
 import org.springframework.lang.Nullable;
 
@@ -28,6 +31,20 @@ public interface CandidateJpaRepository extends JpaRepository<Candidate,Long>{
 
     /*limiting the result*/
     Streamable<Candidate> findTop3ByFirstNameIsContaining(String name);
+
+    /*@Query*/
+    @Query(value = "select c.lastName from Candidate c where c.firstName=?1")
+    List<String> findByFirstName(String firstName);
+
+    @Query(value = "select * from Candidate where first_name=?1",nativeQuery = true)
+    Candidate findByFirstNameNativeQuery(String firstName);
+
+    @Query(value = "select c from Candidate c where c.firstName=:firstName")
+    Candidate findByFirstNameWithParam(@Param("firstName") String firstName);
+
+    @Modifying
+    @Query(value = "update Candidate c set c.email=:email where c.firstName=:firstName and c.lastName=:lastName")
+    int updateTheFirstName(@Param("email")String email,@Param("firstName") String firstName,@Param("lastName") String lastName);
 
 
 }
